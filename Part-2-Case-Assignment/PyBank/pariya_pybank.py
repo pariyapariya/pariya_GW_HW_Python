@@ -1,0 +1,95 @@
+"""
+#%%
+
+@author: pariya
+"""
+import os
+import csv
+
+csvpath = os.path.join('..','PyBank','Resources','budget_data.csv')
+
+with open(csvpath) as csv_pybank:
+
+    csvreader = csv.reader(csv_pybank, delimiter=',')
+    csv_header = next(csvreader)
+    
+    month_count = 0
+    total_month_value = []
+    total_profit_loss = []
+    greatInc = 0
+    greatDec = 0
+    date_col = None
+    changed = 0
+    changed_value = []
+    avg_changed = 0
+    num_arr = []
+    array_zip = []
+    
+    
+    for row in csvreader:
+        
+        #define column
+        month = row[0]
+        
+        #----calculation----
+        
+        #number of months
+        month_count =+ 1        
+        total_month_value.append(row[0])
+        
+        #profit/loss column
+        total_profit_loss =+ float(row[1])
+        num_arr.append(float(row[1:]))        
+        array_zip = zip(num_arr, num_arr[1:])
+        
+        #changes of profit/loss
+        for i in array_zip:
+            changed = i[1] - i[0]
+            changed_value.append(changed)
+        
+        avg_changed = (changed_value / month_count )
+        
+        #Greatest Increase & Decrease
+        greatInc = max(changed_value)
+        greatDec = min(changed_value)
+        
+      
+#terminal print    
+print("    Financial Analysis")
+print("----------------------------")
+print(f"Total Months: {month_count}")
+print(f"Total: ${total_profit_loss}")
+print(f"Average Change: ${avg_changed}")
+print(f"Greatest Increase in Profits: (${greatInc})")
+print(f"Greatest Decrease in Profits: (${greatDec})")
+
+
+
+#textfile print **Follow Dart.**
+with open(pariya_Pybank.txt, "w") as txt_file:
+    
+        #print to terminal
+        pybank_stats = (
+        f"\n\nFinancial Analysis\n"
+        f"-------------------------\n"
+        f"Total Months: {month_count}\n"
+        f"Total: ${total_profit_loss}\n"
+        f"Average Change: ${avg_changed}\n"
+        f"Greatest Increase in Profits: (${greatestInc})\"
+        f"Greatest Decrease in Profits: (${greatestDec})\"
+        )
+    
+    print(pybank_stats, end="")
+    #save to the text file
+    
+    txt_file.write(election_results)
+
+
+  
+     
+
+    
+    
+    
+
+    
